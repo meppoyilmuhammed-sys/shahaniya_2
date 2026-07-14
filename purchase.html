@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shahaniya Supermarket — Purchase / ഓർഡർ</title>
+<style>
+    :root {
+        --navy: #112233;
+        --navy-deep: #0f2537;
+        --gold: #d4af37;
+        --gold-deep: #b8860b;
+        --red: #d32f2f;
+        --green: #4caf50;
+        --teal: #0f5257;
+        --paper: #f0f3f5;
+    }
+    * { box-sizing: border-box; }
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        margin: 0; padding: 20px 20px 140px;
+        background-color: var(--paper);
+        display: flex; justify-content: center;
+    }
+    .sheet {
+        width: 100%; max-width: 650px;
+        background: #ffffff;
+        border: 4px solid var(--gold);
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        overflow: hidden;
+    }
+    .header {
+        background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+        color: #ffffff; text-align: center; padding: 28px 20px;
+        border-bottom: 6px solid var(--gold);
+        position: relative;
+    }
+    .back-link {
+        position: absolute; left: 16px; top: 16px;
+        color: #ffeb3b; text-decoration: none; font-size: 14px; font-weight: bold;
+        background: rgba(255,255,255,0.1); padding: 6px 12px; border-radius: 20px;
+    }
+    .header h1 { margin: 6px 0 2px; font-size: 26px; letter-spacing: 1px; font-weight: bold; }
+    .header h2 { margin: 4px 0 0; font-size: 19px; color: #ffeb3b; }
+    .header p { margin: 8px 0 0; font-size: 13px; color: #cfd8dc; }
+
+    .section-title {
+        background: var(--teal); color: #ffffff;
+        padding: 10px 20px; font-weight: bold; font-size: 16px;
+        letter-spacing: 0.5px;
+    }
+
+    .item-row {
+        display: flex; justify-content: space-between; align-items: center;
+        gap: 12px;
+        padding: 14px 18px; border-bottom: 1px solid #eeeff2;
+    }
+    .item-row:nth-child(even) { background: #fcfbfa; }
+    .item-main { display: flex; align-items: flex-start; gap: 10px; flex: 1; min-width: 0; }
+    .item-icon { font-size: 22px; min-width: 26px; text-align: center; }
+    .item-text { display: flex; flex-direction: column; min-width: 0; }
+    .item-name { font-weight: bold; font-size: 15.5px; color: #112233; line-height: 1.3; }
+    .item-price-line { font-size: 13px; margin-top: 2px; }
+    .mrp { text-decoration: line-through; color: var(--teal); margin-right: 8px; font-weight: bold; }
+    .offer { color: var(--red); font-weight: bold; }
+    .free-gift { color: #9f06f1; font-weight: bold; font-size: 12px; display:block; margin-top:2px; }
+
+    .qty-block { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 118px; }
+    .stepper { display: flex; align-items: center; border: 2px solid var(--navy); border-radius: 8px; overflow: hidden; }
+    .stepper button {
+        background: var(--navy); color: #fff; border: none; width: 30px; height: 30px;
+        font-size: 16px; font-weight: bold; cursor: pointer; line-height: 1;
+    }
+    .stepper button:active { background: var(--gold-deep); }
+    .stepper .qty-display {
+        width: 58px; text-align: center; font-weight: bold; font-size: 13px; color: var(--navy);
+        background: #fff;
+    }
+    .line-total { font-size: 13px; font-weight: bold; color: var(--red); min-height: 16px; }
+
+    .cart-bar {
+        position: fixed; bottom: 0; left: 0; right: 0;
+        background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+        border-top: 4px solid var(--gold);
+        padding: 14px 20px; display: flex; justify-content: center;
+        z-index: 50;
+    }
+    .cart-bar-inner {
+        width: 100%; max-width: 650px;
+        display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    }
+    .cart-total-block { color: #ffffff; }
+    .cart-total-block .label { font-size: 12px; color: #b0bec5; }
+    .cart-total-block .amount { font-size: 24px; font-weight: bold; color: #ffeb3b; }
+    .cart-total-block .savings { font-size: 12px; color: #8bc34a; font-weight: bold; }
+    .send-btn {
+        background: var(--green); color: #fff; border: none; border-radius: 8px;
+        padding: 14px 20px; font-size: 15px; font-weight: bold; cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.25); white-space: nowrap;
+    }
+    .send-btn:disabled { background: #6b7c85; cursor: not-allowed; box-shadow: none; }
+    .send-btn:not(:disabled):active { transform: scale(0.97); }
+
+    .footer-note {
+        background: var(--navy); color: #b0bec5; text-align: center;
+        padding: 14px 20px 18px; font-size: 12px; border-top: 6px solid var(--gold);
+    }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+    <div class="header">
+        <a href="shahaniya.html" class="back-link">⟵ ഓഫർ ലിസ്റ്റ്</a>
+        <h1>🛒 PURCHASE ORDER</h1>
+        <h2>ഷഹാനിയ സൂപ്പർമാർക്കറ്റ്</h2>
+        <p>അളവ് തിരഞ്ഞെടുക്കുക → ടോട്ടൽ കാണുക → കാർട്ടിലേക്ക് അയക്കുക</p>
+    </div>
+
+    <div id="itemsHost"></div>
+
+    <div class="footer-note">
+        Proprietor: HABEEBULLA · PURAKKAD, KOZHIKODE, KERALA · 📞 +91 8281 698973
+    </div>
+</div>
+
+<div class="cart-bar">
+    <div class="cart-bar-inner">
+        <div class="cart-total-block">
+            <div class="label">TOTAL AMOUNT</div>
+            <div class="amount" id="grandTotal">₹0</div>
+            <div class="savings" id="savingsLine"></div>
+        </div>
+        <button class="send-btn" id="sendBtn" disabled onclick="sendToCart()">💬 SEND TO CART</button>
+    </div>
+</div>
+
+<script>
+// unit step config: kg/litre -> 0.5 step (grams-aware), packet/piece -> 1 step
+const UNIT_CONFIG = {
+    kg:     { step: 0.5, min: 0, label: 'കിലോ',   format: v => v >= 1 ? (v % 1 === 0 ? v + ' കിലോ' : v + ' കിലോ') : (v * 1000) + ' ഗ്രാം' },
+    litre:  { step: 0.5, min: 0, label: 'ലിറ്റർ', format: v => v >= 1 ? v + ' ലിറ്റർ' : (v * 1000) + ' മി.ലി' },
+    packet: { step: 1,   min: 0, label: 'പാക്കറ്റ്', format: v => v + ' പാക്കറ്റ്' },
+    piece:  { step: 1,   min: 0, label: 'എണ്ണം',   format: v => v + ' എണ്ണം' }
+};
+
+const CATEGORIES = [
+  { title: '🔥 സ്പെഷ്യൽ ഓഫറുകൾ / COMBO OFFERS', items: [
+      { id:'peanut',  icon:'🫘', name:'നിലക്കടല', size:'(1 കിലോ)', mrp:160, price:150, unit:'kg' },
+      { id:'sesame',  icon:'🟤', name:'എള്ള്',     size:'(1 കിലോ)', mrp:400, price:350, unit:'kg' },
+      { id:'aval',    icon:'🌾', name:'അവിൽ',      size:'(1 പാക്കറ്റ്)', mrp:54,  price:40,  unit:'packet' },
+      { id:'gingoil', icon:'🍾', name:'RG എള്ളെണ്ണ', size:'(1 പാക്കറ്റ്)', mrp:154, price:130, unit:'packet' },
+      { id:'oats500', icon:'🌾', name:'Elite ഓട്സ് 500g', size:'(1 പാക്കറ്റ്)', mrp:120, price:100, unit:'packet', gift:'🎁 കൂടെ 1 സേമിയo 200g സൗജന്യം!' },
+      { id:'penne',   icon:'🌾', name:'PENNE Pasta 400g', size:'(1 പാക്കറ്റ്)', mrp:160, price:140, unit:'packet', gift:'🎁 കൂടെ 1 Pasta 400g സൗജന്യം!' },
+      { id:'mambayar',icon:'🫘', name:'മമ്പയർ',    size:'(1 കിലോ)', mrp:120, price:100, unit:'kg' },
+  ]},
+  { title: '🍚 അരി & ധാന്യങ്ങൾ / RICE & GRAINS', items: [
+      { id:'rice',      icon:'🍚', name:'അരി',         size:'(1 കിലോ)', mrp:45,  price:35,  unit:'kg' },
+      { id:'kayamarice',icon:'🍚', name:'കായമ അരി',   size:'(1 കിലോ)', mrp:160, price:130, unit:'kg' },
+      { id:'kolarice',  icon:'🍚', name:'കോല അരി',    size:'(1 കിലോ)', mrp:80,  price:65,  unit:'kg' },
+      { id:'kuruvarice',icon:'🍚', name:'കുറുവ അരി',  size:'(1 കിലോ)', mrp:50,  price:40,  unit:'kg' },
+      { id:'noorjahan', icon:'🍚', name:'നൂർജഹാൻ അരി',size:'(1 കിലോ)', mrp:43,  price:37,  unit:'kg' },
+      { id:'oats',      icon:'🌾', name:'ഓട്സ്',       size:'(1 കിലോ)', mrp:250, price:200, unit:'kg' },
+      { id:'atta',      icon:'🌾', name:'ആട്ട',        size:'(1 പാക്കറ്റ്)', mrp:57,  price:50,  unit:'packet' },
+      { id:'puttupodi', icon:'🌾', name:'പുട്ടുപൊടി',  size:'(500 ഗ്രാം)', mrp:38, price:28, unit:'packet' },
+  ]},
+  { title: '🥬 പലവ്യഞ്ജനം / GROCERY & PULSES', items: [
+      { id:'sugar',   icon:'🍬', name:'പഞ്ചസാര',     size:'(1 കിലോ)', mrp:50,  price:48,  unit:'kg' },
+      { id:'kadala',  icon:'🫘', name:'കടല',           size:'(1 കിലോ)', mrp:100, price:80,  unit:'kg' },
+      { id:'cherupayar',icon:'🟢', name:'ചെറുപയർ',   size:'(1 കിലോ)', mrp:140, price:130, unit:'kg' },
+      { id:'greenpeas',icon:'🟢', name:'ഗ്രീൻ പീസ്',  size:'(1 കിലോ)', mrp:100, price:75,  unit:'kg' },
+      { id:'onion',   icon:'🧅', name:'ഉള്ളി',         size:'(1 കിലോ)', mrp:40,  price:35,  unit:'kg' },
+      { id:'potato',  icon:'🥔', name:'ഉരുളക്കിഴങ്ങ്', size:'(1 കിലോ)', mrp:30,  price:20,  unit:'kg' },
+      { id:'coconutoil',icon:'🥥', name:'വെളിച്ചെണ്ണ', size:'(1 ലിറ്റർ)', mrp:240, price:220, unit:'litre' },
+  ]},
+  { title: '🌶️ മസാല / SPICES', items: [
+      { id:'chilli', icon:'🌶️', name:'മുളക്', size:'(1 കിലോ)', mrp:290, price:270, unit:'kg' },
+      { id:'malli',  icon:'🌱', name:'മല്ലി',  size:'(1 കിലോ)', mrp:190, price:170, unit:'kg' },
+      { id:'manjal', icon:'🟡', name:'മഞ്ഞൾ',  size:'(1 കിലോ)', mrp:190, price:170, unit:'kg' },
+  ]},
+  { title: '🧼 ക്ലീനിംഗ് & ഹോം കെയർ / CLEANING & HOME', items: [
+      { id:'handwash', icon:'🧼', name:'ഹാൻഡ് വാഷ്',        size:'(5 ലിറ്റർ)', mrp:390, price:170, unit:'piece' },
+      { id:'detergentliq', icon:'🧺', name:'ഡിറ്റർജന്റ് ലിക്വിഡ്', size:'(5 കിലോ)', mrp:499, price:270, unit:'piece' },
+      { id:'coffeeglass', icon:'🥛', name:'കോഫി ഗ്ലാസ്',     size:'(6 പീസ്)', mrp:265, price:200, unit:'piece' },
+      { id:'vivelsoap', icon:'🧼', name:'വിവേൽ സോപ്പ്',      size:'(4 പീസ്)', mrp:140, price:90,  unit:'piece' },
+      { id:'xlsoap', icon:'🧼', name:'എക്സ് എൽ ബാർ സോപ്പ്',  size:'', mrp:120, price:90,  unit:'piece' },
+      { id:'rosesoap', icon:'🌹', name:'റോസ് സോപ്പ് പൊടി',    size:'', mrp:99,  price:90,  unit:'piece' },
+      { id:'sunplus', icon:'☀️', name:'സൺ പ്ലസ് സോപ്പ് പൊടി', size:'', mrp:99,  price:90,  unit:'piece' },
+      { id:'soappowder', icon:'🧺', name:'സോപ്പ് പൊടി',      size:'(4 കിലോ)', mrp:240, price:190, unit:'piece' },
+      { id:'bathsoap', icon:'🧼', name:'ബാത്ത് സോപ്പ്',      size:'(3 എണ്ണം)', mrp:60,  price:50,  unit:'piece' },
+  ]},
+];
+
+const state = {};
+
+function buildUI() {
+    const host = document.getElementById('itemsHost');
+    let html = '';
+    CATEGORIES.forEach(cat => {
+        html += `<div class="section-title">${cat.title}</div>`;
+        cat.items.forEach(item => {
+            state[item.id] = 0;
+            const cfg = UNIT_CONFIG[item.unit];
+            html += `
+            <div class="item-row">
+                <div class="item-main">
+                    <span class="item-icon">${item.icon}</span>
+                    <div class="item-text">
+                        <span class="item-name">${item.name} ${item.size}</span>
+                        <span class="item-price-line"><span class="mrp">MRP ${item.mrp}</span><span class="offer">₹${item.price}${item.unit==='kg'?'/kg':item.unit==='litre'?'/ltr':''}</span></span>
+                        ${item.gift ? `<span class="free-gift">${item.gift}</span>` : ''}
+                    </div>
+                </div>
+                <div class="qty-block">
+                    <div class="stepper">
+                        <button onclick="changeQty('${item.id}', -1)">−</button>
+                        <span class="qty-display" id="qty-${item.id}">0</span>
+                        <button onclick="changeQty('${item.id}', 1)">+</button>
+                    </div>
+                    <div class="line-total" id="line-${item.id}"></div>
+                </div>
+            </div>`;
+        });
+    });
+    host.innerHTML = html;
+}
+
+function getItemById(id) {
+    for (const cat of CATEGORIES) {
+        for (const it of cat.items) if (it.id === id) return it;
+    }
+    return null;
+}
+
+function changeQty(id, dir) {
+    const item = getItemById(id);
+    const cfg = UNIT_CONFIG[item.unit];
+    let val = state[id] + dir * cfg.step;
+    val = Math.max(cfg.min, Math.round(val * 100) / 100);
+    state[id] = val;
+    document.getElementById(`qty-${id}`).textContent = val === 0 ? '0' : cfg.format(val);
+    const lineTotal = val * item.price;
+    document.getElementById(`line-${id}`).textContent = lineTotal > 0 ? `₹${Math.round(lineTotal)}` : '';
+    updateGrandTotal();
+}
+
+function updateGrandTotal() {
+    let total = 0, mrpTotal = 0;
+    CATEGORIES.forEach(cat => cat.items.forEach(item => {
+        const qty = state[item.id];
+        if (qty > 0) {
+            total += qty * item.price;
+            mrpTotal += qty * item.mrp;
+        }
+    }));
+    total = Math.round(total);
+    mrpTotal = Math.round(mrpTotal);
+    document.getElementById('grandTotal').textContent = `₹${total}`;
+    const savings = mrpTotal - total;
+    document.getElementById('savingsLine').textContent = savings > 0 ? `You save ₹${savings}!` : '';
+    document.getElementById('sendBtn').disabled = total === 0;
+}
+
+function sendToCart() {
+    let lines = [];
+    let total = 0;
+    let i = 1;
+    CATEGORIES.forEach(cat => cat.items.forEach(item => {
+        const qty = state[item.id];
+        if (qty > 0) {
+            const cfg = UNIT_CONFIG[item.unit];
+            const lineTotal = Math.round(qty * item.price);
+            total += lineTotal;
+            lines.push(`${i}. ${item.name} ${item.size} - ${cfg.format(qty)} - ₹${lineTotal}`);
+            i++;
+        }
+    }));
+    if (lines.length === 0) return;
+
+    let message = `🛒 Hello Shahaniya Supermarket! I would like to place an order.\n\nHere is my shopping list:\n`;
+    message += lines.join('\n');
+    message += `\n\n💰 Total Amount: ₹${total}`;
+    message += `\n\n📍 My Delivery/Pickup Details:\nName:\nLocation/Address:`;
+
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/919947355573?text=${encoded}`, '_blank');
+}
+
+buildUI();
+</script>
+
+</body>
+</html>

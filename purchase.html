@@ -140,7 +140,7 @@
 <script>
 // unit step config: kg/litre -> 1 step, packet/piece -> 1 step
 const UNIT_CONFIG = {
-    kg:     { step: .5, min: 0, label: 'കിലോ',   format: v => v >= 1 ? (v % 1 === 0 ? v + ' കിലോ' : v + ' കിലോ') : (v * 1000) + ' ഗ്രാം' },
+    kg:     { step: 1, min: 0.5, label: 'കിലോ',   format: v => v >= 1 ? (v % 1 === 0 ? v + ' കിലോ' : v + ' കിലോ') : (v * 1000) + ' ഗ്രാം' },
     litre:  { step: 1, min: 0, label: 'ലിറ്റർ', format: v => v >= 1 ? v + ' ലിറ്റർ' : (v * 1000) + ' മി.ലി' },
     packet: { step: 1, min: 0, label: 'പാക്കറ്റ്', format: v => v + ' പാക്കറ്റ്' },
     piece:  { step: 1, min: 0, label: 'എണ്ണം',   format: v => v + ' എണ്ണം' }

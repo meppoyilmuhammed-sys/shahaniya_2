@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ഷഹാനിയ സൂപ്പർമാർക്കറ്റ് — മെഗാ ഓഫറുകൾ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@500;700;800&family=Noto+Sans+Malayalam:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --comic-red: #E60012;
+            --red-deep: #B9000E;
+            --comic-yellow: #FFD400;
+            --comic-black: #0A0A0A;
+            --comic-white: #FFFFFF;
+            --mrp-red: #D71920;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--red-deep); font-family: "Noto Sans Malayalam", sans-serif; color: var(--comic-black); padding: 20px 0; }
+        .flyer {
+            max-width: 1080px; margin: 0 auto; background: var(--comic-red); position: relative; overflow: hidden;
+            padding: clamp(14px, 2.2vw, 28px); min-height: 100vh; border: 6px solid var(--comic-black);
+            box-shadow: 10px 10px 0 var(--comic-black);
+            background-image: radial-gradient(var(--red-deep) 18%, transparent 19%), radial-gradient(rgba(0,0,0,.15) 18%, transparent 19%);
+            background-size: 22px 22px, 22px 22px; background-position: 0 0, 11px 11px;
+        }
+        .speedlines { position: absolute; top: 0; left: 0; right: 0; height: 180px; pointer-events: none; background: repeating-linear-gradient(-52deg, transparent 0 24px, rgba(255,212,0,.12) 24px 27px); z-index: 0; }
+        header { position: relative; z-index: 2; }
+        .ribbon {
+            background: var(--comic-yellow); border: 4px solid var(--comic-black); box-shadow: 6px 6px 0 var(--comic-black);
+            padding: clamp(14px, 2.6vw, 26px) clamp(30px, 5vw, 60px); margin: 8px clamp(20px, 4vw, 50px) 0; text-align: center;
+            clip-path: polygon(0 22%, 4% 0, 96% 0, 100% 22%, 100% 78%, 96% 100%, 4% 100%, 0 78%);
+        }
+        .title { font-family: "Anek Malayalam", sans-serif; font-weight: 800; color: var(--comic-black); font-size: clamp(32px, 7vw, 76px); line-height: 1.05; text-shadow: 3px 3px 0 var(--comic-red); }
+        .subwrap { text-align: center; margin-top: -6px; position: relative; z-index: 2; }
+        .subtitle { display: inline-block; font-family: "Anek Malayalam", sans-serif; font-weight: 800; color: var(--comic-white); font-size: clamp(26px, 5.5vw, 58px); transform: rotate(-2deg); text-shadow: 3px 3px 0 var(--comic-black); margin-top: 10px; }
+        .meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px; margin: 22px clamp(10px, 3vw, 40px) 8px; position: relative; z-index: 2; }
+        .date-pill { background: var(--comic-white); border: 3px solid var(--comic-black); box-shadow: 4px 4px 0 var(--comic-black); border-radius: 999px; padding: 10px 24px; font-weight: 800; font-size: clamp(15px, 2vw, 24px); }
+        .starburst {
+            background: var(--comic-yellow); border: 0; box-shadow: 5px 5px 0 var(--comic-black); width: clamp(120px, 16vw, 170px); height: clamp(120px, 16vw, 170px);
+            display: flex; align-items: center; justify-content: center; text-align: center; transform: rotate(8deg); padding: 12px;
+            clip-path: polygon(50% 0%, 61% 12%, 78% 6%, 78% 24%, 95% 25%, 86% 40%, 100% 50%, 86% 60%, 95% 75%, 78% 76%, 78% 94%, 61% 88%, 50% 100%, 39% 88%, 22% 94%, 22% 76%, 5% 75%, 14% 60%, 0% 50%, 14% 40%, 5% 25%, 22% 24%, 22% 6%, 39% 12%);
+        }
+        .starburst span { font-family: "Anek Malayalam", sans-serif; font-weight: 800; color: var(--comic-black); line-height: 1.05; font-size: clamp(13px, 1.7vw, 19px); }
+        main { position: relative; z-index: 2; }
+        .grid { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 8px 0 20px; }
+        .card { background: var(--comic-white); border: 3px solid var(--comic-black); border-radius: 16px; padding: 10px 10px 12px; box-shadow: 4px 4px 0 var(--comic-black); display: flex; flex-direction: column; gap: 6px; position: relative; }
+        .card .emoji { font-size: clamp(26px, 3vw, 34px); line-height: 1; }
+        .card .name { font-weight: 800; color: var(--comic-black); font-size: clamp(12px, 1.55vw, 16px); line-height: 1.22; flex: 1; }
+        .card .mrp { color: var(--mrp-red); font-weight: 700; font-size: 13px; text-decoration: line-through; }
+        .card .price { align-self: flex-end; background: var(--comic-yellow); border: 3px solid var(--comic-black); box-shadow: 3px 3px 0 var(--comic-black); color: var(--comic-black); border-radius: 6px; padding: 4px 12px; font-family: "Anek Malayalam", sans-serif; font-weight: 800; font-size: clamp(20px, 2.6vw, 30px); line-height: 1; transform: rotate(-4deg); }
+        footer { position: relative; z-index: 2; margin: 0 calc(-1 * clamp(14px, 2.2vw, 28px)) calc(-1 * clamp(14px, 2.2vw, 28px)); background: var(--red-deep); border-top: 4px solid var(--comic-black); padding: 22px clamp(14px, 3vw, 40px); display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; text-align: center; }
+        footer .cta-text { color: var(--comic-white); font-weight: 900; font-size: clamp(17px, 2.6vw, 28px); font-family: "Anek Malayalam", sans-serif; }
+        footer a { background: var(--comic-yellow); color: var(--comic-black); border: 3px solid var(--comic-black); box-shadow: 4px 4px 0 var(--comic-black); border-radius: 999px; padding: 12px 26px; min-height: 44px; display: inline-flex; align-items: center; font-weight: 800; text-decoration: none; font-size: clamp(14px, 1.9vw, 20px); }
+        @media(max-width: 899px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+        @media(max-width: 599px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+    </style>
+</head>
+<body>
+<div class="flyer">
+    <div class="speedlines"></div>
+    <header>
+        <div class="ribbon"><h1 class="title">ഷഹാനിയ സൂപ്പർമാർക്കറ്റ്</h1></div>
+        <div class="subwrap"><span class="subtitle">മെഗാ ഓഫറുകൾ</span></div>
+        <div class="meta">
+            <span class="date-pill">തിയതി: 11 ഓഗസ്റ്റ് 2026</span>
+            <div class="starburst"><span>വലിയ ലാഭം! ഉറപ്പ്!</span></div>
+        </div>
+    </header>
+    <main><ul class="grid" id="grid"></ul></main>
+    <footer>
+        <span class="cta-text">ഓൺലൈൻ വാങ്ങാൻ സന്ദർശിക്കുക</span>
+        <!-- LINK TO PAGE 2 (index.html) -->
+        <a href="list.html">🛒 View Full Offer List (ഓഫറുകൾ കാണുക)</a>
+    </footer>
+</div>
+<script>
+const DATA=[["🍳","ഓയിൽ (1 ലിറ്റർ)",170,142],["🌻","സൺഫ്ലവർ ഓയിൽ (1 ലിറ്റർ)",200,170],["🧴","ഹാൻഡ് വാഷ് (5 ലിറ്റർ)",350,170],["🧴","ഡിഷ് വാഷ് (5 ലിറ്റർ)",300,160],["🧴","ഡിഷ് വാഷ് (1 ലിറ്റർ)",95,50],["🧺","ഡിറ്റർജന്റ് ലിക്വിഡ് (5.5 കിലോ)",499,270],["🧼","വിവേൽ സോപ്പ് (4 പീസ്)",140,90],["🧼","Ziya സോപ്പ് (4 പീസ്)",110,90],["🌹","റോസ് സോപ്പ് പൊടി",99,90],["🧺","Twash സോപ്പ് പൊടി (3.5 കിലോ)",255,190],["🥥","വെളിച്ചെണ്ണ (samruthy) (1 ലിറ്റർ)",290,250],["🧅","ഉള്ളി (1 കിലോ)",38,30],["🧅","ചെറിയ ഉള്ളി (250 ഗ്രാം)",25,20],["🧄","വെളുത്തുള്ളി (250 ഗ്രാം)",60,45],["🥚","മുട്ട (10 എണ്ണം)",75,65],["🥔","ഉരുളക്കിഴങ്ങ് (1 കിലോ)",40,20],["🌾","അജ്മി പുട്ടുപൊടി 500 ഗ്രാം (1 പാക്കറ്റ്)",40,35],["🍬","പഞ്ചസാര (1 കിലോ)",60,55],["🌾","OZON പത്തിരിപ്പൊടി 500g (1 പാക്കറ്റ്)",48,35],["🌾","മേളം വെള്ളപ്പം 1kg (1 പാക്കറ്റ്)",57,50],["🌾","OZON പുട്ടുപൊടി 500 ഗ്രാം (1 പാക്കറ്റ്)",40,30],["🍚","അരി (1 കിലോ)",45,35],["🍚","കായമ അരി (1 കിലോ)",160,130],["🍚","കോല അരി (1 കിലോ)",90,80],["🍚","കുറുവ അരി (1 കിലോ)",60,50],["🍚","പച്ചരി (Pachari) (1 കിലോ)",45,35],["🧆","കടല (1 കിലോ)",100,90],["🧆","വെള്ളക്കടല (Chickpeas) (1 കിലോ)",150,140],["☕","ചായപ്പൊടി (1 കിലോ)",320,260],["🟢","ചെറുപയർ (1 കിലോ)",150,130],["🟢","ഗ്രീൻ പീസ് (1 കിലോ)",100,70],["🌶️","മുളക് (1 കിലോ)",310,280],["🫙","അച്ചാർ - നാരങ്ങ,മാങ്ങ 500g (1 പാക്കറ്റ്)",75,60],["🌾","ഓട്സ് (1 കിലോ)",250,190],["🧼","Ziya ബാത്ത് സോപ്പ് (3 എണ്ണം)",60,50],["🌾","ലിബർട്ടി ആട്ട 1Kg (1 പാക്കറ്റ്)",60,48],["🌾","OZON ആട്ട 1kg (1 പാക്കറ്റ്)",55,45],["🫓","ചപ്പാത്തി (Chappathi) (1 പാക്കറ്റ്)",50,40]];
+const grid=document.getElementById('grid');
+DATA.forEach((d,i)=>{const li=document.createElement('li');li.className='card';li.innerHTML='<span class="emoji">'+d[0]+'</span><span class="name">'+(i+1)+'. '+d[1]+'</span><span class="mrp">MRP '+d[2]+'</span><span class="price">₹'+d[3]+'</span>';grid.appendChild(li);});
+</script>
+</body>
+</html>

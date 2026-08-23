@@ -112,7 +112,7 @@
 
 <div class="sheet">
     <div class="header">
-        <a href="list.html" class="back-link">⟵ ഓഫർ ലിസ്റ്റ്</a>
+        <a href="index.html" class="back-link">⟵ ഓഫർ ലിസ്റ്റ്</a>
         <h1>🛒 PURCHASE ORDER</h1>
         <h2>ഷഹാനിയ സൂപ്പർമാർക്കറ്റ്</h2>
         <p>അളവ് തിരഞ്ഞെടുക്കുക → ടോട്ടൽ കാണുക → കാർട്ടിലേക്ക് അയക്കുക</p>
@@ -138,7 +138,7 @@
 
 <script>
 const UNIT_CONFIG = {
-    kg:     { step: 1, min: 0, label: 'കിലോ',   format: v => v >= 1 ? (v % 1 === 0 ? v + ' കിലോ' : v + ' കിലോ') : (v * 1000) + ' ഗ്രാം' },
+    kg:     { step: 1, min: 0, label: 'കിലോ',   format: v => v >= 1 ? v + ' കിലോ' : (v * 1000) + ' ഗ്രാം' },
     litre:  { step: 1, min: 0, label: 'ലിറ്റർ', format: v => v >= 1 ? v + ' ലിറ്റർ' : (v * 1000) + ' മി.ലി' },
     packet: { step: 1, min: 0, label: 'പാക്കറ്റ്', format: v => v + ' പാക്കറ്റ്' },
     piece:  { step: 1, min: 0, label: 'എണ്ണം',   format: v => v + ' എണ്ണം' }
@@ -146,30 +146,36 @@ const UNIT_CONFIG = {
 
 const CATEGORIES = [
   { title: '🌾 അരി & ധാന്യങ്ങൾ / RICE & GRAINS', items: [
-      { id:'ozonpathiri',icon:'🌾', name:'OZON പത്തിരിപ്പൊടി 500g', size:'(1 പാക്കറ്റ്)', mrp:48, price:35, unit:'packet' }, 
-      { id:'ozoneputtu', icon:'🌾', name:'OZON പുട്ടുപൊടി 500 ഗ്രാം', size:'(1 പാക്കറ്റ്)', mrp:40, price:30, unit:'packet' },
-      { id:'macaroni',   icon:'🌾', name:'മാക്രോണി',           size:'(500 ഗ്രാം)', mrp:45, price:35, unit:'packet' },
-      { id:'semiya',     icon:'🌾', name:'സേമിയo വറുത്തത്',    size:'(500 ഗ്രാം)', mrp:30, price:25, unit:'packet' },
-      { id:'chappathi',  icon:'🫓', name:'ചപ്പാത്തി (Chappathi)', size:'(1 പാക്കറ്റ്)', mrp:50, price:40, unit:'packet' },
+      { id:'ozon_pathiri', icon:'🌾', name:'OZON പത്തിരിപ്പൊടി 500g', size:'(1 പാക്കറ്റ്)', mrp:48, price:35, unit:'packet' },
+      { id:'ozon_puttu',   icon:'🌾', name:'OZON പുട്ടുപൊടി 1KG',    size:'(1 പാക്കറ്റ്)', mrp:70, price:60, unit:'packet' },
+      { id:'macaroni',     icon:'🌾', name:'മാക്രോണി',               size:'(500 ഗ്രാം)', mrp:45, price:45, unit:'packet' },
+      { id:'semiya',       icon:'🌾', name:'സേമിയo വറുത്തത്',       size:'(500 ഗ്രാം)', mrp:30, price:30, unit:'packet' },
+      { id:'atta_1kg',     icon:'🌾', name:'ആട്ട 1kg',                size:'(1 പാക്കറ്റ്)', mrp:57, price:50, unit:'packet' },
+      { id:'liberty_atta', icon:'🌾', name:'ലിബർട്ടി ആട്ട 1Kg',       size:'(1 പാക്കറ്റ്)', mrp:65, price:55, unit:'packet' },
+      { id:'chappathi',    icon:'🫓', name:'ചപ്പാത്തി (Chappathi)',   size:'(1 പാക്കറ്റ്)', mrp:50, price:50, unit:'packet' }
   ]},
   { title: '🥬 പലവ്യഞ്ജനം & എണ്ണ / GROCERY & OILS', items: [
-      { id:'coconutoil', icon:'🥥', name:'വെളിച്ചെണ്ണ (smruthy)', size:'(1 ലിറ്റർ)', mrp:280, price:260, unit:'litre' },
-      { id:'vilakkoil',  icon:'🪔', name:'വിളക്കെണ്ണ',         size:'(500 ml)',    mrp:118, price:90,  unit:'piece' },
-      { id:'onion',      icon:'🧅', name:'ഉള്ളി',             size:'(1 കിലോ)',    mrp:40,  price:33,  unit:'kg' },
-      { id:'egg',        icon:'🥚', name:'മുട്ട',              size:'(10 എണ്ണം)',  mrp:70,  price:60,  unit:'piece' },
-      { id:'potato',     icon:'🥔', name:'ഉരുളക്കിഴങ്ങ്',     size:'(1 കിലോ)',    mrp:45,  price:25,  unit:'kg' },
-      { id:'sugar',      icon:'🍬', name:'പഞ്ചസാര',           size:'(1 കിലോ)',    mrp:60,  price:55,  unit:'kg' },
-      { id:'kadala',     icon:'🧆', name:'കടല',               size:'(1 കിലോ)',    mrp:100, price:90,  unit:'kg' },
-      { id:'cherupayar', icon:'🟢', name:'ചെറുപയർ',           size:'(1 കിലോ)',    mrp:140, price:125, unit:'kg' },
-      { id:'cherupayar_parippu', icon:'🧆', name:'ചെറുപയർ പരിപ്പ്', size:'(1 കിലോ)', mrp:160, price:140, unit:'kg' },
-      { id:'greenpeas',  icon:'🟢', name:'ഗ്രീൻ പീസ്',         size:'(1 കിലോ)',    mrp:100, price:70,  unit:'kg' },
-      { id:'jaggery',    icon:'🍬', name:'ശർക്കര',             size:'(1 കിലോ)',    mrp:70,  price:60,  unit:'kg' },
+      { id:'coconutoil',    icon:'🥥', name:'വെളിച്ചെണ്ണ (smruthy)', size:'(1 ലിറ്റർ)',   mrp:280, price:260, unit:'litre' },
+      { id:'vilakkoil',     icon:'🪔', name:'വിളക്കെണ്ണ',            size:'(500 ml)',     mrp:118, price:118, unit:'piece' },
+      { id:'onion',         icon:'🧅', name:'ഉള്ളി',                size:'(1 കിലോ)',     mrp:40,  price:50,  unit:'kg' },
+      { id:'egg',           icon:'🥚', name:'മുട്ട',                 size:'(10 എണ്ണം)',   mrp:75,  price:60,  unit:'piece' },
+      { id:'potato',        icon:'🥔', name:'ഉരുളക്കിഴങ്ങ്',        size:'(1 കിലോ)',     mrp:45,  price:25,  unit:'kg' },
+      { id:'sugar',         icon:'🍬', name:'പഞ്ചസാര',              size:'(1 കിലോ)',     mrp:73,  price:68,  unit:'kg' },
+      { id:'kadala',        icon:'🧆', name:'കടല',                  size:'(1 കിലോ)',     mrp:100, price:90,  unit:'kg' },
+      { id:'payasam_eastern',icon:'🍲', name:'Eastern പായസം മിക്സ്',  size:'(1 പാക്കറ്റ്)', mrp:85,  price:75,  unit:'packet' },
+      { id:'payasam_elite',  icon:'🍲', name:'Elite പായസം മിക്സ്',    size:'(1 പാക്കറ്റ്)', mrp:82,  price:70,  unit:'packet' },
+      { id:'payasam_double', icon:'🍲', name:'Double Horse പായസം മിക്സ്', size:'(1 പാക്കറ്റ്)', mrp:89, price:75, unit:'packet' },
+      { id:'tea_powder',    icon:'🍃☕', name:'ചായപ്പൊടി',          size:'(200 ഗ്രാം)',  mrp:75,  price:60,  unit:'packet' },
+      { id:'cherupayar',    icon:'🟢', name:'ചെറുപയർ',              size:'(1 കിലോ)',     mrp:140, price:140, unit:'kg' },
+      { id:'cherupayar_parippu', icon:'🧆', name:'ചെറുപയർ പരിപ്പ്',  size:'(1 കിലോ)',     mrp:160, price:150, unit:'kg' },
+      { id:'greenpeas',     icon:'🟢', name:'ഗ്രീൻ പീസ്',            size:'(1 കിലോ)',     mrp:100, price:100, unit:'kg' },
+      { id:'jaggery',       icon:'🍬', name:'ശർക്കര',                size:'(1 കിലോ)',     mrp:85,  price:70,  unit:'kg' }
   ]},
   { title: '🧼 ക്ലീനിംഗ് & ഹോം കെയർ / CLEANING & HOME', items: [
-      { id:'dishwash1l', icon:'🧴🍽️',name:'ഡിഷ് വാഷ്',         size:'(1 ലിറ്റർ)',   mrp:95,  price:50,  unit:'piece' },
-      { id:'vivelsoap',  icon:'🧼',  name:'വിവേൽ സോപ്പ്',       size:'(4 പീസ്)',     mrp:140, price:90,  unit:'piece' },
-      { id:'ziyasoap4',  icon:'🧼',  name:'Ziya സോപ്പ്',       size:'(4 പീസ്)',     mrp:110, price:90,  unit:'piece' },
-  ]},
+      { id:'dishwash',      icon:'🧴🍽️', name:'ഡിഷ് വാഷ്',            size:'(5 ലിറ്റർ)',   mrp:300, price:160, unit:'piece' },
+      { id:'vivelsoap',     icon:'🧼',  name:'വിവേൽ സോപ്പ്',          size:'(4 പീസ്)',     mrp:140, price:90,  unit:'piece' },
+      { id:'ziyasoap',      icon:'🧼',  name:'Ziya സോപ്പ്',           size:'(4 പീസ്)',     mrp:110, price:90,  unit:'piece' }
+  ]}
 ];
 
 const state = {};
@@ -187,7 +193,7 @@ function buildUI() {
                     <span class="item-icon">${item.icon}</span>
                     <div class="item-text">
                         <span class="item-name">${item.name} ${item.size}</span>
-                        <span class="item-price-line"><span class="mrp">MRP ${item.mrp}</span><span class="offer">₹${item.price}${item.unit==='kg'?'/kg':item.unit==='litre'?'/ltr':''}</span></span>
+                        <span class="item-price-line"><span class="mrp">MRP ${item.mrp}</span><span class="offer">₹${item.price}</span></span>
                     </div>
                 </div>
                 <div class="qty-block">

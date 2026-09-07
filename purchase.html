@@ -148,42 +148,39 @@ const CATEGORIES = [
   { title: '🥬 പച്ചക്കറി & ദിനചര്യ സാമഗ്രികൾ / VEGETABLES & GROCERY', items: [
       { id:'onion',         icon:'🧅', name:'ഉള്ളി',                size:'(1 kg)',       mrp:60,  price:50,  unit:'kg' },
       { id:'potato',        icon:'🥔', name:'ഉരുളക്കിഴങ്ങ്',        size:'(1 kg)',       mrp:30,  price:20,  unit:'kg' },
-      { id:'sugar',         icon:'🍬', name:'പഞ്ചസാര',              size:'',             mrp:72,  price:66,  unit:'kg' },
-      { id:'small_onion',   icon:'🧅', name:'ചെറിയ ഉള്ളി',          size:'(250g)',       mrp:35,  price:25,  unit:'packet' },
-      { id:'garlic',        icon:'🧄', name:'വെളുത്തുള്ളി',          size:'(100g)',       mrp:30,  price:20,  unit:'packet' },
-      { id:'egg',           icon:'🥚', name:'മുട്ട',                 size:'(10 എണ്ണം)',   mrp:70,  price:60,  unit:'piece' }
+      { id:'sugar',         icon:'🍬', name:'പഞ്ചസാര',              size:'',             mrp:70,  price:60,  unit:'kg' },
+      { id:'egg',           icon:'🥚', name:'മുട്ട',                 size:'(10 എണ്ണം)',   mrp:70,  price:60,  unit:'piece' },
+      { id:'lemon_pickle',  icon:'🍋', name:'നാരങ്ങ അച്ചാർ',        size:'(500g)',       mrp:75,  price:55,  unit:'packet' },
+      { id:'mango_pickle',  icon:'🥭', name:'മാങ്ങ അച്ചാർ',          size:'(500g)',       mrp:70,  price:50,  unit:'packet' }
   ]},
-  { title: '🌾 പൊടികൾ & ധാന്യങ്ങൾ / FLOURS, PULSES & GRAINS', items: [
-      { id:'greenpeas',     icon:'🟢', name:'പച്ചപ്പട്ടാണി (Green Peas)', size:'',     mrp:100, price:70,  unit:'kg' },
+  { title: '🌾 പൊടികൾ, ധാന്യങ്ങൾ & റൈസ് / FLOURS, GRAINS & RICE', items: [
+      { id:'kaima_rice',    icon:'🍚', name:'കൈമ അരി',              size:'(1 kg)',       mrp:160, price:130, unit:'kg' },
+      { id:'macaroni',      icon:'🍝', name:'മക്രോണി',              size:'(500g)',       mrp:45,  price:35,  unit:'packet' },
+      { id:'pasta',         icon:'🍝', name:'പാസ്ത',                size:'(500g)',       mrp:140, price:70,  unit:'packet' },
       { id:'kadala',        icon:'🧆', name:'കടല',                  size:'',             mrp:110, price:90,  unit:'kg' },
-      { id:'cherupayar',    icon:'🟢', name:'ചെറുപയർ',              size:'',             mrp:140, price:130, unit:'kg' },
-      { id:'puttu_1kg',     icon:'🌾', name:'പുട്ടുപൊടി',            size:'(1 kg)',       mrp:70,  price:60,  unit:'packet' },
-      { id:'parisons_atta', icon:'🌾', name:'Parisons ആട്ട',        size:'',             mrp:65,  price:55,  unit:'packet' },
-      { id:'ozone_atta_1kg',icon:'🌾', name:'Ozone ആട്ട',           size:'(1 kg)',       mrp:57,  price:50,  unit:'packet' },
-      { id:'ozone_atta_500g',icon:'🌾', name:'Ozone ആട്ട',          size:'(500g)',       mrp:43,  price:30,  unit:'packet' },
-      { id:'flag_rava',     icon:'🌾', name:'FLAG റവ',              size:'(500g)',       mrp:32,  price:30,  unit:'packet' },
-      { id:'ozone_pathiri', icon:'🌾', name:'Ozone പത്തിരിപ്പൊടി',    size:'(500g)',       mrp:38,  price:30,  unit:'packet' },
-      { id:'ajmi_puttu_1kg',icon:'🌾', name:'അജ്മി പുട്ടുപൊടി',       size:'(1 kg)',       mrp:92,  price:70,  unit:'packet' },
-      { id:'ajmi_puttu_500g',icon:'🌾', name:'അജ്മി പുട്ടുപൊടി',      size:'(500g)',       mrp:46,  price:35,  unit:'packet' },
-      { id:'ajmi_pathiri',  icon:'🌾', name:'അജ്മി പത്തിരിപ്പൊടി',   size:'(500g)',       mrp:46,  price:40,  unit:'packet' },
-      { id:'matta_aval',    icon:'🌾', name:'മട്ട അവൽ',              size:'(500g)',       mrp:58,  price:40,  unit:'packet' },
-      { id:'aval_manis',    icon:'🌾', name:'അവൽ മാണീസ്',           size:'(500g)',       mrp:50,  price:40,  unit:'packet' }
+      { id:'cherupayar',    icon:'🟢', name:'ചെറുപയർ',              size:'',             mrp:160, price:110, unit:'kg' },
+      { id:'muttari_powder',icon:'🌾', name:'മൂത്താരി പൊടി',        size:'(500g)',       mrp:65,  price:50,  unit:'packet' },
+      { id:'muttari_whole', icon:'🌾', name:'മൂത്താരി',              size:'(1 kg)',       mrp:70,  price:58,  unit:'kg' },
+      { id:'puttu_1kg',     icon:'🌾', name:'പുട്ടുപൊടി',            size:'(1 kg)',       mrp:75,  price:60,  unit:'packet' },
+      { id:'parisons_atta', icon:'🌾', name:'Parisons ആട്ട',        size:'',             mrp:65,  price:50,  unit:'packet' },
+      { id:'pathiri_500g',  icon:'🌾', name:'പത്തിരിപ്പൊടി',        size:'(500g)',       mrp:46,  price:40,  unit:'packet' },
+      { id:'matta_aval',    icon:'🌾', name:'മട്ട അവൽ',              size:'(500g)',       mrp:55,  price:40,  unit:'packet' }
   ]},
-  { title: '🛢️ എണ്ണ & ചായപ്പൊടി / OILS & TEA', items: [
-      { id:'smruthy_oil',   icon:'🥥', name:'സമൃദ്ധി വെളിച്ചെണ്ണ', size:'(1 ലിറ്റർ)',   mrp:280, price:260, unit:'litre' },
-      { id:'cooking_oil',   icon:'🛢️', name:'ഓയിൽ',                 size:'',             mrp:160, price:150, unit:'litre' },
-      { id:'sunflower_oil', icon:'🌻', name:'സൺഫ്ലവർ ഓയിൽ',        size:'',             mrp:200, price:180, unit:'litre' },
-      { id:'tea_powder',    icon:'🍃☕', name:'ചായപ്പൊടി',          size:'(200g)',       mrp:75,  price:65,  unit:'packet' }
+  { title: '🛢️ എണ്ണ & പാചക എണ്ണകൾ / OILS', items: [
+      { id:'smruthy_oil',   icon:'🥥', name:'സമൃദ്ധി വെളിച്ചെണ്ണ', size:'(1 ലിറ്റർ)',   mrp:280, price:255, unit:'litre' },
+      { id:'cooking_oil',   icon:'🛢️', name:'ഓയിൽ',                 size:'',             mrp:160, price:155, unit:'litre' }
   ]},
-  { title: '🧼 ക്ലീനിംഗ് & സോപ്പുകൾ / CLEANING & SOAPS', items: [
-      { id:'xl_soap',       icon:'🧼',  name:'XL അലക്കു സോപ്പ്',     size:'',             mrp:120, price:90,  unit:'piece' },
-      { id:'thara_bar',     icon:'🧼',  name:'താര ബാർ സോപ്പ്',       size:'',             mrp:60,  price:50,  unit:'piece' },
-      { id:'exo_3pc',       icon:'🧼',  name:'എക്‌സോ',               size:'(3 piece)',    mrp:40,  price:30,  unit:'packet' },
+  { title: '🧼 ക്ലീനിംഗ് & സോപ്പുകൾ / CLEANING, SOAPS & PERSONAL CARE', items: [
+      { id:'wash_liquid_5kg',icon:'🧺', name:'വാഷിംഗ് ലിക്വിഡ്',      size:'(5 kg)',       mrp:499, price:270, unit:'piece' },
+      { id:'ujala_powder_5kg',icon:'🧼', name:'Ujala സോപ്പ് പൊടി',   size:'(5 kg)',       mrp:460, price:395, unit:'piece' },
+      { id:'rose_powder',   icon:'🧼',  name:'Rose സോപ്പ് പൊടി',      size:'',             mrp:99,  price:89,  unit:'packet' },
+      { id:'soap_powder_3_5',icon:'🧺', name:'സോപ്പ് പൊടി',          size:'(3.5 kg)',     mrp:255, price:190, unit:'piece' },
+      { id:'exo_4pc',       icon:'🧼',  name:'എക്സോ',               size:'(4 piece)',    mrp:40,  price:30,  unit:'packet' },
       { id:'ziya_3pc',      icon:'🧼',  name:'Ziya soap',           size:'(3 piece)',    mrp:60,  price:50,  unit:'packet' },
       { id:'dishwash_1l',   icon:'🧴',  name:'ഡിഷ്‌വാഷ് ലിക്വിഡ്',   size:'(1 ലിറ്റർ)',   mrp:95,  price:50,  unit:'piece' },
-      { id:'vivel_4pc',     icon:'🧼',  name:'Vivel soap',          size:'(4 piece)',    mrp:140, price:90,  unit:'packet' },
-      { id:'handwash_5kg',  icon:'🧴',  name:'ഹാൻഡ് വാഷ്',          size:'(5 kg)',       mrp:240, price:170, unit:'piece' },
-      { id:'dishwash_5l',   icon:'🧴',  name:'ഡിഷ്‌വാഷ് ലിക്വിഡ്',   size:'(5 ലിറ്റർ)',   mrp:230, price:170, unit:'piece' }
+      { id:'dishwash_5l',   icon:'🧴',  name:'ഡിഷ്‌വാഷ് ലിക്വിഡ്',   size:'(5 ലിറ്റർ)',   mrp:300, price:160, unit:'piece' },
+      { id:'toothbrush_3pc',icon:'🪥',  name:'ടൂത്ത് ബ്രഷ്',          size:'(3 piece)',    mrp:60,  price:50,  unit:'packet' },
+      { id:'handwash_5kg',  icon:'🧴',  name:'ഹാന്റ് വാഷ്',          size:'(5 kg)',       mrp:250, price:160, unit:'piece' }
   ]}
 ];
 
@@ -271,10 +268,7 @@ function sendToCart() {
     }));
     if (lines.length === 0) return;
 
-    let message = `🛒 Hello Shahaniya Supermarket! I would like to place an order.
-
-Here is my shopping list:
-`;
+    let message = `🛒 Hello Shahaniya Supermarket! I would like to place an order.\n\nHere is my shopping list:\n`;
     message += lines.join('\n');
     message += `\n\n💰 Total Amount: ₹${total}`;
     message += `\n\n📍 My Delivery/Pickup Details:\nName:\nLocation/Address:`;
